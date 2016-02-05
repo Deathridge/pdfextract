@@ -9,7 +9,7 @@ from pdfminer.layout import LAParams
 
 laparams = LAParams()
 laparams.word_margin = float(1.0)
-laparams.char_margin = float(2.5)
+laparams.char_margin = float(2.0)
 #laparams.line_margin = float(0.55)
 #laparams.boxes_flow = float(0.7)
 #laparams.detect_vertical = True
@@ -24,7 +24,7 @@ device =TextConverter(rsrc, restr,laparams=laparams) #replace restr with outfp f
 interpreter = PDFPageInterpreter(rsrc, device)
 book = xlwt.Workbook(encoding="utf-8")
 
-for pageNumber,page in enumerate(PDFPage.get_pages(fp, password=None, caching=caching, check_extractable=True)):
+for pageNumber,page in enumerate(PDFPage.get_pages(fp, [1200], password=None, caching=caching, check_extractable=True)):
     if (pageNumber+1)%3 == 0:        
         numcolumns = 8
     else:
@@ -99,7 +99,7 @@ for pageNumber,page in enumerate(PDFPage.get_pages(fp, password=None, caching=ca
         
     
 fp.close()
-outfp.close()
+#outfp.close()
 
 
 
